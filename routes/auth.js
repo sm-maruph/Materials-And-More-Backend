@@ -8,7 +8,7 @@ const supabase = require("../supabase");
 
 const JWT_SECRET = process.env.JWT_SECRET;
 const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN || "1h";
-const RECAPTCHA_SECRET_KEY = process.env.RECAPTCHA_SECRET_KEY || "6Le6xZkrAAAAAI9-g1NIkW-oCEWDVpn6Xsnd7gX-"; // Replace with real key for production
+const RECAPTCHA_SECRET_KEY = process.env.RECAPTCHA_SECRET_KEY || "6Ld3oZwrAAAAAF4a6Gs569WtZEH-hQY83Xlf2ff1"; // Replace with real key for production
 
 // Login route with captcha verification
 router.post("/login", async (req, res) => {
