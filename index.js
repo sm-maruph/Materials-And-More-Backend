@@ -14,11 +14,25 @@ const { verifyToken } = require("./routes/auth");
 const app = express();
 app.use(express.json());
 
+const allowedOrigins = [
+  'http://localhost:3000',  // local dev frontend
+  'https://materials-and-more-frontend.onrender.com' // your deployed frontend
+];
+
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: function(origin, callback) {
+    // allow requests with no origin (like Postman or curl)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
   credentials: true,
 }));
+
 
 // 🟢 Now this works correctly
 app.use("/admin", authRoute); // /admin/login now available
