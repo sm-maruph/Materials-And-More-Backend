@@ -244,9 +244,9 @@ router.get("/:id", async (req, res) => {
  // PUT update a product (and delete old image if changed)
 router.put("/:id", async (req, res) => {
   const { id } = req.params;
-  const { name, category_id, description, price, image_url, specification } = req.body;
+  const { name, category_id, description, price, image_url, specifications } = req.body;
 
-  if (specification && !Array.isArray(specification)) {
+  if (specifications && !Array.isArray(specifications)) {
     return res.status(400).json({ error: "Specification must be an array" });
   }
 
@@ -283,7 +283,7 @@ router.put("/:id", async (req, res) => {
     // 3. Update the product
     const { data, error } = await supabase
       .from("products")
-      .update({ name, category_id, description, price, image_url, specification })
+      .update({ name, category_id, description, price, image_url, specifications })
       .eq("id", id)
       .select();
 
