@@ -16,7 +16,8 @@ app.use(express.json());
 
 const allowedOrigins = [
   'http://localhost:3000',  // local dev frontend
-  'https://materials-and-more-frontend.onrender.com' // your deployed frontend
+  'https://materials-and-more-frontend.onrender.com', // your deployed frontend
+  'https://www.materialsmore.com/'
 ];
 
 app.use(cors({
