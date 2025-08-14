@@ -34,6 +34,13 @@ app.use(cors({
   credentials: true,
 }));
 
+// 🟢 Health check route (fast, no DB calls) for uptime pings
+app.get("/health", (req, res) => {
+  res.status(200).json({
+    status: "ok",
+    time: new Date().toISOString()
+  });
+});
 
 // 🟢 Now this works correctly
 app.use("/admin", authRoute); // /admin/login now available
